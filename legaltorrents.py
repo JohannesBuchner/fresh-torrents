@@ -18,14 +18,13 @@ exp = start + spacer + name + spacer + date + spacer + torrenturl + spacer + siz
 
 ENTRIES_PER_PAGE = 30
 
-class Thepiratebay(TorrentSite):
+class Legaltorrents(TorrentSite):
 	urlschema = 'http://thepiratebay.org/browse/%(category)s/%(n)s/7'
 	queries = 0
-	backendname = 'ThePirateBay'
 	
-	def get_backend_name(self):
-		return self.backendname
-		
+	def __init__(self, cb, category, tmpdir = '/tmp/tpb/'):
+		TorrentSite.__init__(self, cb, category, tmpdir = '/tmp/tpb/')
+	
 	def _fetch_current_entries(self):
 		page = self._cacher(self.page)
 		ms = re.findall(exp, page, re.MULTILINE | re.DOTALL)
@@ -36,7 +35,7 @@ class Thepiratebay(TorrentSite):
 			(descrelurl, name, unparseddate, torrenturl, size, unit, seeders, leechers) = m
 			entries.append( {
 				'descurl':'http://thepiratebay.org'+descrelurl,
-				'name': self.cleanup_string(name),
+				'name': name.strip(),
 				'torrenturl': torrenturl,
 				'age': (datetime.date.today()-self.parse_date(unparseddate)).days,
 				'seeders': seeders,
@@ -44,9 +43,6 @@ class Thepiratebay(TorrentSite):
 				'size': self.parse_size(size, unit),
 			})
 		return entries
-	
-	def push_entries_limit(self, n = 5*30):
-		TorrentSite.push_entries_limit(self, n)
 	
 	def parse_date(self, unparseddate):
 		d = unparseddate.replace('&nbsp;', ' ')
@@ -83,8 +79,6 @@ if __name__ == "__main__":
 	pb = Thepiratebay(mockcb, 202)
 	pb.push_entries_limit()
 	pb.start()
-	time.sleep(5)
-	pb.push_entries_limit()
 	time.sleep(5)
 	pb.stop()
 
