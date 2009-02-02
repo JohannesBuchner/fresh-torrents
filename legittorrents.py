@@ -67,7 +67,7 @@ class Legittorrents(TorrentSite):
 if __name__ == "__main__":
 	def mockcb(v):
 		print 'mockcb',v
-	pb = Legittorrents(mockcb, 1)
+	pb = Legittorrents(mockcb, 0)
 	pb.push_entries_limit()
 	pb.start()
 	time.sleep(5)

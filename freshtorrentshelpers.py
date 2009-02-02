@@ -27,19 +27,3 @@ def find_child_by_name_recurse(window, name):
 	return False
 
 
-
-class TitleCountUpdater(Thread):
-	running = True
-	def __init__(self, titlepattern, window, model):
-		self.model = model
-		self.window = window
-		self.titlepattern = titlepattern
-		Thread.__init__(self)
-	def stop(self):
-		self.running = False
-	def run(self):
-		while self.running:
-			print 'model now supports:',self.model.get_n_columns()
-			self.window.set_title(self.titlepattern % (self.model.get_n_columns(),))
-			time.sleep(4)
-

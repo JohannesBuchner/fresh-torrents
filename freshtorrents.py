@@ -109,7 +109,7 @@ class FreshTorrents:
 		self._apply_min()
 		self._apply_max()
 		
-		self.model = gtk.ListStore( str, str, str, int, int, int, int, int )
+		self.model = gtk.ListStore( str, str, str, long, long, long, long, long )
 		self.content.set_model(self.model)
 		#self.content.set_headers_visible(False)
 		self.content.append_column( gtk.TreeViewColumn('name', gtk.CellRendererText(), text=NAME_COLUMN ))
@@ -268,7 +268,8 @@ Maybe the backend isn't implemented yet."""%modulename)
 		
 		row = [
 				value['name'], value['descurl'], value['torrenturl'], 
-				int(value['age']), int(value['size']/1024/1024), int(value['seeders']), int(value['leechers']), 
+				int(value['age']), int(value['size']/1024/1024), 
+				int(min(sys.maxint,int(value['seeders']))), int(min(sys.maxint,int(value['leechers']))), 
 				0
 			]
 		iter = self.model.append( row )
@@ -394,7 +395,8 @@ Maybe the backend isn't implemented yet."""%modulename)
 		if self.s_max is not None and s > self.s_max: return 0
 		if self.l_min is not None and l < self.l_min: return 0
 		if self.l_max is not None and l > self.l_max: return 0
-		return a*self.a_weight + s*self.s_weight + l*self.l_weight
+		return min(sys.maxint, a*self.a_weight + s*self.s_weight + l*self.l_weight)
+		
 
 if __name__ == "__main__":
 	gs = FreshTorrents()
