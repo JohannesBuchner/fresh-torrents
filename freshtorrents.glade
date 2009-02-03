@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Mon Feb  2 03:13:15 2009 -->
+<!--Generated with glade3 3.4.5 on Tue Feb  3 04:12:49 2009 -->
 <glade-interface>
   <widget class="GtkWindow" id="freshtorrents">
     <property name="title" translatable="yes">Fresh torrents</property>
@@ -18,7 +18,7 @@
                 <child>
                   <widget class="GtkMenuItem" id="menuitem1">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">_Datei</property>
+                    <property name="label" translatable="yes">_File</property>
                     <property name="use_underline">True</property>
                     <child>
                       <widget class="GtkMenu" id="menu1">
@@ -126,10 +126,8 @@
                                   </widget>
                                 </child>
                                 <child>
-                                  <widget class="GtkSeparatorMenuItem" id="menuitem12">
+                                  <widget class="GtkSeparatorMenuItem" id="separatormenuitem4">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">menuitem12</property>
-                                    <property name="use_underline">True</property>
                                   </widget>
                                 </child>
                                 <child>
@@ -230,6 +228,7 @@
                                     <property name="tooltip" translatable="yes">legaltorrents|television</property>
                                     <property name="label" translatable="yes">Television</property>
                                     <property name="use_underline">True</property>
+                                    <signal name="activate" handler="on_backend_update"/>
                                   </widget>
                                 </child>
                                 <child>
@@ -238,17 +237,12 @@
                                   </widget>
                                 </child>
                                 <child>
-                                  <widget class="GtkMenuItem" id="menuitem15">
+                                  <widget class="GtkMenuItem" id="menuitem12">
                                     <property name="visible">True</property>
-                                    <property name="tooltip" translatable="yes">legal|</property>
+                                    <property name="tooltip" translatable="yes">legaltorrents|</property>
                                     <property name="label" translatable="yes">User-defined category</property>
                                     <property name="use_underline">True</property>
                                     <signal name="activate" handler="on_backend_update"/>
-                                    <child>
-                                      <widget class="GtkMenu" id="menu8">
-                                        <property name="visible">True</property>
-                                      </widget>
-                                    </child>
                                   </widget>
                                 </child>
                               </widget>
@@ -292,7 +286,7 @@
                 <child>
                   <widget class="GtkMenuItem" id="menuitem4">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">_Hilfe</property>
+                    <property name="label" translatable="yes">_Help</property>
                     <property name="use_underline">True</property>
                     <child>
                       <widget class="GtkMenu" id="menu3">
@@ -345,47 +339,13 @@
                         <property name="n_rows">2</property>
                         <property name="n_columns">3</property>
                         <child>
-                          <widget class="GtkLabel" id="label4">
+                          <widget class="GtkLabel" id="label6">
                             <property name="visible">True</property>
-                            <property name="label" translatable="yes">age in days</property>
-                          </widget>
-                        </child>
-                        <child>
-                          <widget class="GtkHScale" id="age">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="adjustment">-10 -20 20 1 10 10</property>
-                            <property name="digits">0</property>
-                            <property name="value_pos">GTK_POS_BOTTOM</property>
+                            <property name="label" translatable="yes">leechers</property>
                           </widget>
                           <packing>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="GtkLabel" id="label5">
-                            <property name="visible">True</property>
-                            <property name="label" translatable="yes">seeders</property>
-                          </widget>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="GtkHScale" id="seeders">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="adjustment">10 0 100 1 10 10</property>
-                            <property name="digits">0</property>
-                            <property name="value_pos">GTK_POS_BOTTOM</property>
-                          </widget>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
+                            <property name="left_attach">2</property>
+                            <property name="right_attach">3</property>
                           </packing>
                         </child>
                         <child>
@@ -404,14 +364,48 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="GtkLabel" id="label6">
+                          <widget class="GtkHScale" id="seeders">
                             <property name="visible">True</property>
-                            <property name="label" translatable="yes">leechers</property>
+                            <property name="can_focus">True</property>
+                            <property name="adjustment">10 0 100 1 10 10</property>
+                            <property name="digits">0</property>
+                            <property name="value_pos">GTK_POS_BOTTOM</property>
                           </widget>
                           <packing>
-                            <property name="left_attach">2</property>
-                            <property name="right_attach">3</property>
+                            <property name="left_attach">1</property>
+                            <property name="right_attach">2</property>
+                            <property name="top_attach">1</property>
+                            <property name="bottom_attach">2</property>
                           </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkLabel" id="label5">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">seeders</property>
+                          </widget>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="right_attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkHScale" id="age">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="adjustment">-7 -100 20 1 10 10</property>
+                            <property name="digits">0</property>
+                            <property name="value_pos">GTK_POS_BOTTOM</property>
+                          </widget>
+                          <packing>
+                            <property name="top_attach">1</property>
+                            <property name="bottom_attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkLabel" id="label4">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">age in days</property>
+                          </widget>
                         </child>
                       </widget>
                     </child>
@@ -477,17 +471,13 @@
                                 <property name="n_rows">2</property>
                                 <property name="n_columns">3</property>
                                 <child>
-                                  <widget class="GtkLabel" id="label8">
+                                  <widget class="GtkLabel" id="label3">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">leechers</property>
+                                    <property name="label" translatable="yes">age in days</property>
                                   </widget>
-                                  <packing>
-                                    <property name="left_attach">2</property>
-                                    <property name="right_attach">3</property>
-                                  </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkHScale" id="leechers_min">
+                                  <widget class="GtkHScale" id="age_min">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="adjustment">-1 -1 1000 1 10 10</property>
@@ -495,10 +485,18 @@
                                     <property name="value_pos">GTK_POS_BOTTOM</property>
                                   </widget>
                                   <packing>
-                                    <property name="left_attach">2</property>
-                                    <property name="right_attach">3</property>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="label7">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">seeders</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -517,17 +515,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="label7">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">seeders</property>
-                                  </widget>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">2</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkHScale" id="age_min">
+                                  <widget class="GtkHScale" id="leechers_min">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="adjustment">-1 -1 1000 1 10 10</property>
@@ -535,15 +523,21 @@
                                     <property name="value_pos">GTK_POS_BOTTOM</property>
                                   </widget>
                                   <packing>
+                                    <property name="left_attach">2</property>
+                                    <property name="right_attach">3</property>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="label3">
+                                  <widget class="GtkLabel" id="label8">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">age in days</property>
+                                    <property name="label" translatable="yes">leechers</property>
                                   </widget>
+                                  <packing>
+                                    <property name="left_attach">2</property>
+                                    <property name="right_attach">3</property>
+                                  </packing>
                                 </child>
                               </widget>
                             </child>
@@ -597,17 +591,13 @@
                                 <property name="n_rows">2</property>
                                 <property name="n_columns">3</property>
                                 <child>
-                                  <widget class="GtkLabel" id="label10">
+                                  <widget class="GtkLabel" id="label12">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">leechers</property>
+                                    <property name="label" translatable="yes">age in days</property>
                                   </widget>
-                                  <packing>
-                                    <property name="left_attach">2</property>
-                                    <property name="right_attach">3</property>
-                                  </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkHScale" id="leechers_max">
+                                  <widget class="GtkHScale" id="age_max">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="adjustment">-1 -1 1000 1 10 10</property>
@@ -615,10 +605,18 @@
                                     <property name="value_pos">GTK_POS_BOTTOM</property>
                                   </widget>
                                   <packing>
-                                    <property name="left_attach">2</property>
-                                    <property name="right_attach">3</property>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="label11">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">seeders</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -637,17 +635,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="label11">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">seeders</property>
-                                  </widget>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">2</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkHScale" id="age_max">
+                                  <widget class="GtkHScale" id="leechers_max">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="adjustment">-1 -1 1000 1 10 10</property>
@@ -655,15 +643,21 @@
                                     <property name="value_pos">GTK_POS_BOTTOM</property>
                                   </widget>
                                   <packing>
+                                    <property name="left_attach">2</property>
+                                    <property name="right_attach">3</property>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="label12">
+                                  <widget class="GtkLabel" id="label10">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">age in days</property>
+                                    <property name="label" translatable="yes">leechers</property>
                                   </widget>
+                                  <packing>
+                                    <property name="left_attach">2</property>
+                                    <property name="right_attach">3</property>
+                                  </packing>
                                 </child>
                               </widget>
                             </child>
