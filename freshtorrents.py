@@ -45,15 +45,23 @@ gtk.gdk.threads_init()
 
 prog_name = "freshtorrents"
 prog_comments = """Finds popular torrents"""
-prog_version = "1.0"
+prog_version = "1.0.1"
 prog_authors = ['Johannes Buchner']
 prog_copyright = copyright
 prog_license = license
-prog_website = "http://twoday.tuwien.ac.at/jo/"
+prog_website = "http://freshtorrents.sourceforge.net/"
 
 prog_help_text = """Fresh Torrents (%s)
 
-Helps you find popular, cheap (bandwidth-wise) and new torrents"""
+It provides you with an alternative view on popular, cheap (bandwidth-wise) and new torrents giving you infinite filtering freedom.
+
+You can find new torrents with an high amount of seeders/leechers. The weighing of what is important to you (number of seeders, number of leechers, age) is in your hands.
+
+Additionally, you can filter out torrents (e.g. older than n days, less than n seeders, etc.).
+
+Go to the website for more usage hints and for new versions (more features, etc.)!
+
+http://freshtorrents.sf.net/"""
 
 gladefilename = "freshtorrents.glade"
 window = 'freshtorrents'
@@ -155,11 +163,12 @@ class FreshTorrents:
 		about_dialog.hide()
 	
 	def on_help(self, param):
-		text = prog_help_text % prog_version
-		
+		secondary_text = prog_help_text % prog_version
+		text = prog_comments
 		msg = gtk.MessageDialog(self.mainwindow, gtk.DIALOG_MODAL | 
 			gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_INFO, gtk.BUTTONS_OK, 
 			str(text))
+		msg.format_secondary_text(secondary_text)
 		msg.run()
 		msg.destroy()
 		
